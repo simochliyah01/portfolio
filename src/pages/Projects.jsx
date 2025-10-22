@@ -6,7 +6,7 @@ const projects = [
   {
     title: "IT Equipment Management System",
     desc: "A comprehensive full-stack web application designed to manage and monitor IT equipment within an organization. It enables tracking of devices, failures, repairs, staff assignments, and locations through an intuitive dashboard. The system includes secure authentication, role-based access control, and automated report generation to improve efficiency. Developed using React.js for the frontend, Laravel for the backend, and MySQL for the database.",
-    img: "/maquette/login.png",
+    img: "/assets/images/projet1.png",
     tech: ["React.js", "Laravel", "MySQL"],
     code: "https://github.com/simochliyah01/Gestion-Material-",
     demo: "/demo/it-equipment", 
