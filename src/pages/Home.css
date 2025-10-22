@@ -1,0 +1,131 @@
+.home {
+    padding-top: calc(100px + 0px); 
+    padding-bottom: 0;
+  }
+  
+  .hero {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr; 
+    gap: 40px;
+    align-items: center;
+  }
+  
+  .hello {
+    color: #b9b9b9;
+    font-weight: 700;
+    margin: 0 0 8px;
+  }
+  
+  .name {
+    font-size: 64px;
+    line-height: 1.05;
+    margin: 0 0 8px;
+    font-weight: 800;
+  }
+  
+  .role {
+    font-size: 32px;
+    margin: 0 0 22px;
+    color: transparent;
+    background: linear-gradient(90deg, #b8b8b8, #6e767d);
+    -webkit-background-clip: text;
+  }
+  
+  .desc {
+    color: #cfcfcf;
+    max-width: 650px;
+    line-height: 1.7;
+    margin: 0 0 28px;
+  }
+  
+  .cta {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 26px;
+  }
+  
+  .socials {
+    display: flex;
+    gap: 18px;
+    opacity: 0.95;
+  }
+  .socials a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    border: 1px solid #2a2a2a;
+    background: #141414;
+    transition: transform 0.2s;
+  }
+  .socials a:hover { transform: translateY(-1px); }
+  
+  
+  :root {
+    --avatar: clamp(260px, 30vw, 460px); 
+  }
+  
+  .right { display: flex; justify-content: center; }
+  
+  
+  .avatar-ring{
+    position: relative;
+    display: grid;
+    place-items: center;
+    
+  }
+  
+  
+  .avatar-ring::after{
+    content: "";
+    position: absolute;
+    width: calc(var(--avatar) + 16px);
+    height: calc(var(--avatar) + 16px);
+    border-radius: 50%;
+    
+    background:
+      radial-gradient(80% 80% at 30% 20%, rgba(74,208,255,.18), transparent 60%),
+      radial-gradient(70% 70% at 80% 80%, rgba(128,0,255,.10), transparent 60%);
+    border: 1px solid #1d1d1d;
+    box-shadow: inset 0 0 35px rgba(0,0,0,.35), 0 10px 40px rgba(0,0,0,.45);
+    z-index: -1;       
+    pointer-events: none;
+  }
+  
+  
+  .avatar-ring img{
+    width: 380px;
+    height: 380px;
+    border-radius: 50%;
+    border: 2px solid #444;             
+    object-fit: cover;
+    object-position: center 8%;
+    box-shadow: 0 0 20px rgba(255,255,255,0.05);
+    display: block;
+    transform: scale(1);                 
+    transition: transform .35s ease, box-shadow .35s ease;
+    will-change: transform;
+  }
+  
+
+  .avatar-ring:hover img{
+    transform: scale(1.06);
+    box-shadow: 0 0 28px rgba(255,255,255,0.07);
+  }
+  
+  
+  @media (max-width: 1000px) {
+    .hero { grid-template-columns: 1fr; gap: 28px; }
+    .right { order: -1; }
+    .name { font-size: 44px; }
+    .role { font-size: 24px; }
+  }
+  
+  @media (max-width: 520px) {
+    :root { --avatar: clamp(220px, 55vw, 380px); }
+    .name { font-size: 36px; }
+    .role { font-size: 20px; }
+  }
+  

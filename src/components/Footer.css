@@ -1,0 +1,28 @@
+.site-footer{
+    margin-top: 48px;
+    border-top: 1px solid #1a1a1a;
+    background: #0d0d0d;
+  }
+  
+  .footer-inner{
+    min-height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;     /* text centered like mockup */
+    gap: 12px;
+    color: #c9c9c9;
+    font-size: 14px;
+  }
+  
+  .footer-links{
+    display: flex; align-items: center; gap: 10px;
+    opacity: .85;
+  }
+  .footer-links a{ color:#bdbdbd; }
+  .footer-links a:hover{ color:#fff; }
+  
+  /* small screens */
+  @media (max-width:520px){
+    .footer-inner{ min-height: 64px; font-size: 13px; }
+  }
+  

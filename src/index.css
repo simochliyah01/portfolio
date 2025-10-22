@@ -1,13 +1,67 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:root{
+  --bg:#0b0b0b;
+  --card:#121212;
+  --text:#eaeaea;
+  --muted:#a1a1a1;
+  --brand:#4ad0ff;
+  --ring:#2e2e2e;
+  --border:#1f1f1f;            /* unified card border */
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+*{ box-sizing:border-box; }
+html, body, #root{ height:100%; }
+html, body{ overflow-x:hidden; }   /* ✅ ma bqach scroll m9i3 men l-yssar */
+
+body{
+  margin:0;
+  font-family: Inter, system-ui, Arial, sans-serif;
+  background: var(--bg);          /* ✅ solid background */
+  color:var(--text);
+  position: relative;
 }
+
+/* overlay fixed (same glow 3la ga3 pages) */
+#root::before{
+  content:"";
+  position: fixed;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+  background:
+    radial-gradient(1200px 800px at 72% 28%, #0f1418 0%, transparent 60%),
+    radial-gradient(900px 600px at 20% 80%, #100e14 0%, transparent 65%);
+  opacity:.55;
+  filter: blur(0.3px);            /* anti-banding khfif */
+}
+
+a{ color:inherit; text-decoration:none; }
+.container{ max-width:1200px; margin:0 auto; padding:0 24px; }
+
+.btn{
+  display:inline-flex; gap:8px; align-items:center; justify-content:center;
+  border:1px solid #2a2a2a; background:#1a1a1a; color:#fff;
+  padding:12px 18px; border-radius:12px; font-weight:600; transition:.2s;
+}
+.btn:hover{ transform:translateY(-1px); border-color:#3a3a3a; }
+.btn.primary{ background:#ffffff10; border-color:#ffffff22; }
+.btn.ghost{ background:transparent; }
+
+.section-pad{ padding:120px 0; }
+.spacer{ height:24px; }
+
+/* ===== App shell (sticky footer) ===== */
+.app-shell{
+  min-height:100%;
+  display:flex;
+  flex-direction:column;
+}
+.app-main{ flex:1; }
+
+/* ===== Unified card style (same color everywhere) ===== */
+.card, .skill-card, .exp-card, .edu-card, .info-card, .socials-card, .note-card, .project-card{
+  background: var(--card);
+  border: 1px solid var(--border);
+}
+
+/* small UX fixes to avoid overflow surprises */
+img{ max-width:100%; display:block; }

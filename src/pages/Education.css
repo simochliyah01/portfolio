@@ -1,0 +1,85 @@
+.education{
+    padding: calc(64px + 48px) 0 80px;
+    padding-bottom: 0;
+  }
+  
+  .edu-heading{
+    font-size: 48px;
+    margin: 0 0 8px;
+    font-weight: 800;
+  }
+  
+  .edu-subtitle{
+    color:#aeb0b3;
+    margin: 0 0 28px;
+    font-size: 18px;
+  }
+  
+  /* list */
+  .edu-list{
+    display:flex;
+    flex-direction:column;
+    gap:26px;
+  }
+  
+  /* card */
+  .edu-card{
+    display:flex;
+    gap:18px;
+    background:#121212;
+    border:1px solid #1f1f1f;
+    border-radius:18px;
+    padding:22px;
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
+    transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease;
+  }
+  .edu-card:hover{
+    transform:translateY(-4px);
+    border-color:#2a2a2a;
+    box-shadow:0 16px 40px rgba(0,0,0,.35);
+  }
+  
+  /* icon circle */
+  .edu-icon{
+    width:52px; height:52px; border-radius:50%;
+    display:grid; place-items:center;
+    background:#141414; border:1px solid #252525; color:#eaeaea;
+    flex: 0 0 auto;
+  }
+  
+  .edu-content{ min-width:0; }
+  
+  /* titles */
+  .edu-title{
+    margin:0 0 4px;
+    font-size:22px; font-weight:800;
+  }
+  .edu-badge{
+    font-size:14px; font-weight:700; margin-left:6px;
+    color:#bfbfbf;
+  }
+  .edu-sub{ color:#bdbdbd; margin-bottom:2px; }
+  .edu-org{ font-weight:800; margin:6px 0 0; }
+  
+  /* meta */
+  .edu-meta{
+    display:flex; gap:16px; align-items:center;
+    color:#a9a9a9; font-size:14px; margin:8px 0 6px;
+  }
+  .edu-meta span{ display:flex; align-items:center; gap:6px; }
+  .edu-meta svg{ font-size:13px; color:#d3d3d3; }
+  
+  /* note */
+  .edu-note{
+    color:#cfcfcf; line-height:1.7; margin:8px 0 0; font-size:15.5px;
+  }
+  
+  /* responsive */
+  @media (max-width:700px){
+    .edu-heading{ font-size:40px; }
+    .edu-card{ padding:18px; }
+  }
+  @media (max-width:520px){
+    .edu-heading{ font-size:34px; }
+  }
+  
