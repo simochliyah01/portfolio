@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   FaInfoCircle,
   FaAngular,
@@ -6,7 +6,9 @@ import {
   FaTimes,
   FaCopy,
   FaCheck,
+  FaArrowLeft,
 } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import "./LiveDemo.css";
 
 const dotnetYaml = `name: Final-pip
@@ -121,6 +123,13 @@ jobs:
 
 function CodeModal({ title, yaml, bullets, onClose }) {
   const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    const onKey = (e) => e.key === "Escape" && onClose();
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [onClose]);
+
   const copy = async () => {
     await navigator.clipboard.writeText(yaml);
     setCopied(true);
@@ -128,7 +137,12 @@ function CodeModal({ title, yaml, bullets, onClose }) {
   };
 
   return (
-    <div className="ld-modal" role="dialog" aria-modal="true">
+    <div
+      className="ld-modal"
+      role="dialog"
+      aria-modal="true"
+      style={{ overflowY: "auto", WebkitOverflowScrolling: "touch", touchAction: "pan-y" }}
+    >
       <button className="ld-close" onClick={onClose} aria-label="Close">
         <FaTimes />
       </button>
@@ -167,7 +181,10 @@ function CodeModal({ title, yaml, bullets, onClose }) {
 }
 
 export default function LiveDemoProject2() {
-  const [open, setOpen] = useState(null);
+  const navigate = useNavigate();
+  const [open, setOpen] = useState(null); // 'angular' | 'dotnet' | null
+
+  const goBackToProjects = () => navigate("/#projects");
 
   const angularNotes = [
     { title: "Checkout", text: "Fetch repository code." },
@@ -190,6 +207,16 @@ export default function LiveDemoProject2() {
 
   return (
     <section className="ld">
+      {/* fixed back arrow */}
+      <button
+        className="back-fab"
+        onClick={goBackToProjects}
+        aria-label="Back to Projects"
+        title="Back to Projects"
+      >
+        <FaArrowLeft />
+      </button>
+
       <div className="ld-wrap">
         <h1 className="ld-title">Provincial Web Application — Live Demo</h1>
         <p className="ld-sub">Context and CI/CD pipelines (Angular & .NET)</p>

@@ -160,3 +160,23 @@
 .ld-notes h4 { margin:0 0 8px; font-size:15px; }
 .ld-notes ul { margin:0; padding-left:18px; display:grid; gap:8px; }
 .ld-code-footer { margin-top:10px; color:#9b9b9b; text-align:left; }
+
+
+
+.back-fab{
+  right: 10px;
+  top: 76px;          /* adjust if your navbar height differs */
+  left: 16px;
+  z-index: 10000;
+  width: 42px; height: 42px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: #121212;
+  border: 1px solid #2e2e2e;
+  color: #eaeaea;
+  cursor: pointer;
+}
+.back-fab:hover{ filter: brightness(1.1); }
+@media (max-width: 900px){
+  .back-fab{ top: 72px; left: 10px; }
+}

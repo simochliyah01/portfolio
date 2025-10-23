@@ -1,19 +1,23 @@
-// src/pages/LiveDemo.jsx
 import { useState } from "react";
-import { FaPlay, FaImages, FaTimes, FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { FaPlay, FaImages, FaTimes, FaChevronLeft, FaChevronRight, FaArrowLeft } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import { shotNames, demoVideo } from "../data/itEquipmentDemo";
 import "./LiveDemo.css";
-
 
 const makeUrl = (name, ext = "jpg") => encodeURI(`/maquette/${name}.${ext}`);
 
 export default function LiveDemo() {
+  const navigate = useNavigate();
+
   const [videoOpen, setVideoOpen] = useState(false);
   const [galleryOpen, setGalleryOpen] = useState(false);
   const [i, setI] = useState(0);
+  const [extMap, setExtMap] = useState({});
 
- 
-  const [extMap, setExtMap] = useState({}); 
+  const goBackToProjects = () => {
+    // go back to the one-page “Projects” section
+    navigate("/#projects");
+  };
 
   const prev = () => setI((x) => (x - 1 + shotNames.length) % shotNames.length);
   const next = () => setI((x) => (x + 1) % shotNames.length);
@@ -23,15 +27,21 @@ export default function LiveDemo() {
   const currentSrc = makeUrl(currentName, currentExt);
 
   const handleImgError = (name) => {
-    setExtMap((m) => {
-      // إذا كان أصلاً png ماندير والو (باش ماندوزوش ف loop)
-      if (m[name] === "png") return m;
-      return { ...m, [name]: "png" };
-    });
+    setExtMap((m) => (m[name] === "png" ? m : { ...m, [name]: "png" }));
   };
 
   return (
     <section className="ld">
+      {/* fixed back arrow */}
+      <button
+        className="back-fab"
+        onClick={goBackToProjects}
+        aria-label="Back to Projects"
+        title="Back to Projects"
+      >
+        <FaArrowLeft />
+      </button>
+
       <div className="ld-wrap">
         <h1 className="ld-title">IT Equipment Management System — Live Demo</h1>
         <p className="ld-sub">Choose how you want to explore the project</p>
@@ -51,7 +61,12 @@ export default function LiveDemo() {
 
       {/* Video */}
       {videoOpen && (
-        <div className="ld-modal" role="dialog" aria-modal="true">
+        <div
+          className="ld-modal"
+          role="dialog"
+          aria-modal="true"
+          style={{ overflowY: "auto", WebkitOverflowScrolling: "touch", touchAction: "pan-y" }}
+        >
           <button className="ld-close" onClick={() => setVideoOpen(false)} aria-label="Close"><FaTimes/></button>
           <div className="ld-video">
             <video src={demoVideo} controls playsInline />
@@ -61,7 +76,12 @@ export default function LiveDemo() {
 
       {/* Gallery / Lightbox */}
       {galleryOpen && (
-        <div className="ld-modal" role="dialog" aria-modal="true">
+        <div
+          className="ld-modal"
+          role="dialog"
+          aria-modal="true"
+          style={{ overflowY: "auto", WebkitOverflowScrolling: "touch", touchAction: "pan-y" }}
+        >
           <button className="ld-close" onClick={() => setGalleryOpen(false)} aria-label="Close"><FaTimes/></button>
 
           <button className="ld-nav left" onClick={prev} aria-label="Prev"><FaChevronLeft/></button>
@@ -71,7 +91,7 @@ export default function LiveDemo() {
               className="ld-img"
               src={currentSrc}
               alt={currentName}
-              onError={() => handleImgError(currentName)} // ⭐ fallback png
+              onError={() => handleImgError(currentName)}
             />
             <figcaption className="ld-cap">
               {currentName} — {i + 1}/{shotNames.length}
